@@ -1,0 +1,29 @@
+
+
+class Solution {
+    
+    //Function to reverse every sub-array group of size k.
+    void reverseInGroups(ArrayList<Integer> arr, int n, int k) {
+        // code here
+        int size = n;
+        for(int ii=0; ii<n; ii=ii+k){
+            // using two pointer 
+            int start=ii, end = Math.min(ii+k-1, n-1);      // start -> 0 and, end -> lenth-1
+            while(start <= end){
+                int temp = arr.get(start);
+                // A[temp]=A[i];
+                
+                arr.set(start, arr.get(end));
+                // A[i]=B[j];
+            
+                arr.set(end, temp);
+                // B[j]=A[i];
+                
+            start++;
+            end--;
+            }
+        }
+        
+    }
+}
+
