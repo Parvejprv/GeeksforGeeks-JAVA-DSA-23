@@ -1,0 +1,99 @@
+Question: Ship Packages | Capacity To Ship Packages Within D Days
+link: https://www.geeksforgeeks.org/capacity-to-ship-packages-within-d-days/
+
+
+
+
+
+
+
+
+C++ Solution:
+************************************************
+int leastWeightCapacity(int weights[], int n, int days) {
+  
+  int start = weights[0], end = 0, mid, ans = -1;
+  
+  for(int i=0; i<n; i++){
+      if(weights[i] > start){
+          start = weights[i];         // maximum element of the array
+      }
+      end += weights[i];          // total sum of the elements
+  }
+  
+  while(start <= end){
+      mid = start + (end-start)/2;
+      
+      int weight = 0, count = 1;
+      for(int i=0; i<n; i++){
+          weight += weights[i];
+          
+          if(weight > mid ){
+              count++;
+              weight = weights[i];
+          }
+      }
+      
+      // Check for count to days
+      if(count <= days){
+          ans = mid;
+          end = mid - 1;
+      } else {
+          start = mid + 1;
+      }
+  }
+  return ans;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Java Solution:
+************************************************
+static int leastWeightCapacity(int[] weights, int N, int D) {
+    
+    int start = weights[0], end = 0, mid, ans = -1;
+    
+    for(int i=0; i<N; i++){
+        if(weights[i] > start){
+            start = weights[i];         // maximum element of the array
+        }
+        end += weights[i];          // total sum of the elements
+    }
+    
+    while(start <= end){
+        mid = start + (end-start)/2;
+        
+        int weight = 0, count = 1;
+        for(int i=0; i<N; i++){
+            weight += weights[i];
+            
+            if(weight > mid ){
+                count++;
+                weight = weights[i];
+            }
+        }
+        
+        // Check for count to days
+        if(count <= D){
+            ans = mid;
+            end = mid - 1;
+        } else {
+            start = mid + 1;
+        }
+    }
+    return ans;
+}
+
+
+
+
