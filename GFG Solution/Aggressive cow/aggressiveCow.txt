@@ -74,3 +74,9 @@ int solve(int n, int k, vector<int> &stalls) {
 }
 
 
+
+
+
+
+Time Complexity: O(N*log(n))
+Space Complexity: O(1)
