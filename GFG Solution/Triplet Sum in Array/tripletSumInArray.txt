@@ -1,0 +1,39 @@
+/*  
+Question: Triplet sum in Array (GFG)
+link: https://www.geeksforgeeks.org/problems/triplet-sum-in-array-1587115621/1
+
+Approach: Binary Search
+
+
+bool find3Numbers(int A[], int n, int X)
+{
+    sort(A, A + n); // Sorting the array first
+    
+    for(int i=0; i<n-2; i++){
+        if (i == 0 || A[i] != A[i - 1]) {    // Ensure distinct first element
+            for(int j=i+1; j<n-1; j++){
+                if (j == i + 1 || A[j] != A[j - 1]) { // Ensure distinct second element
+                    int find = X-(A[i]+A[j]);
+                    
+                    // Binary search for the third element
+                    int start = j+1, end = n-1;
+                    while(start <= end){
+                        int mid = start + (end-start)/2;
+                        
+                        if(A[mid] == find)
+                            return true;
+                        else if(A[mid] < find)
+                            start = mid + 1;
+                        else 
+                            end = mid - 1;
+                    }
+                }
+            }
+            
+        }
+    }
+    return false;
+}
+
+
+*/
