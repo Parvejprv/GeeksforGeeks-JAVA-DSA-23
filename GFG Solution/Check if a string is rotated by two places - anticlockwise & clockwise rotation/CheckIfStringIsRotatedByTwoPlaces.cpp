@@ -1,0 +1,95 @@
+/*  
+GFG Question : Check if String is rotated by two places 
+
+link :-
+
+
+*/
+
+
+
+// C++
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+    //Function to check if a string can be obtained by rotating
+    //another string by exactly 2 places.
+    
+    void rotateClockwise(string &s){
+        // take last character of the string into another var
+        char last = s[s.size()-1];
+        int index = s.size()-2;
+        
+        while(index >= 0){
+            s[index+1] = s[index];
+            index--;
+        }
+        s[0] = last;
+    }
+    
+    void rotateAnticlockwise(string &s){
+        char first = s[0];
+        int index = 1;
+        
+        while(index < s.size()){
+            s[index-1] = s[index];
+            index++;
+        }
+        s[s.size()-1] = first;
+    }
+    
+    
+    bool isRotated(string str1, string str2)
+    {
+        // Check if these two strings are not equal 
+        if(str1.size() != str2.size())
+        return 0;
+        
+        string clockwise, anticlockwise;
+        
+        clockwise = str1;
+        rotateClockwise(clockwise);
+        rotateClockwise(clockwise);
+        
+        if(clockwise == str2)
+        return 1;
+        
+        anticlockwise = str1;
+        rotateAnticlockwise(anticlockwise);
+        rotateAnticlockwise(anticlockwise);
+        
+        if(anticlockwise == str2)
+        return 1;
+        
+        
+        return 0;
+    }
+
+};
+
+
+//{ Driver Code Starts.
+
+int main() {
+	
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		string b;
+		cin>>s>>b;
+		Solution obj;
+		cout<<obj.isRotated(s,b)<<endl;
+	}
+	return 0;
+}
+
+// } Driver Code Ends
