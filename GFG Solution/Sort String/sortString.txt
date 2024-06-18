@@ -1,0 +1,82 @@
+
+
+
+// Solution : 1
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+class GFG
+{
+	public static void main(String[] args) throws IOException
+	{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while(t-->0)
+        {
+            String s = br.readLine().trim();
+            Solution obj = new Solution();
+            String ans = obj.SortedString(s);
+            System.out.println(ans);
+        }
+	}
+}
+
+
+
+class sortString
+{
+    public String SortedString(String str){
+        List<Character> vowels = new ArrayList<>();
+        List<Character> consonants = new ArrayList<>();
+        
+        // seperate vowel and consonant
+        for(char c : str.toCharArray()){
+            if(isVowel(c)){
+                vowels.add(c);
+            } else {
+                consonants.add(c);
+            }
+        }
+        
+        
+        // Sort the vowels and consonants
+        Collections.sort(vowels);
+        Collections.sort(consonants);
+        
+        StringBuilder result = new StringBuilder();
+        int vIndex = 0, cIndex = 0;
+        boolean isVowelTurn = isVowel(str.charAt(0));
+        
+        // Now, specified pattern
+        while(vIndex < vowels.size() && cIndex < consonants.size()){
+            if(isVowelTurn){
+                result.append(vowels.get(vIndex++));
+            } else {
+                result.append(consonants.get(cIndex++));
+            }
+            isVowelTurn = !isVowelTurn;     // do the vowel turn false at each test
+        }
+        
+        // Append the remaining vowels or consonants
+        while(vIndex < vowels.size()){
+            result.append(vowels.get(vIndex++));
+        }
+        
+        while(cIndex < consonants.size()){
+            result.append(consonants.get(cIndex++));
+        }
+        
+        return result.toString();
+    }
+    
+    private boolean isVowel(char c){
+        return "aeiou".indexOf(c) >= 0;
+    }
+}
+
+
+
