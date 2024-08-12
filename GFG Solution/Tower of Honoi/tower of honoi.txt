@@ -1,0 +1,26 @@
+link: https://www.geeksforgeeks.org/problems/tower-of-hanoi-1587115621/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+Problem: GFG
+----------------
+
+// You need to complete this function
+    void tohCal(int n, int sour, int help, int dest){
+        // Base condition
+        if(n==1){
+            cout << "move disk " << n << " from rod " << sour << " to rod " << dest << endl;
+            return;
+        }
+        
+        // Move n-1 disks from source to helper, using destination as auxiliary
+        tohCal(n-1, sour, dest, help);
+        // Move the nth disk from source to destination
+        cout << "move disk " << n << " from rod " << sour << " to rod " << dest << endl;
+        // Move n-1 disks from helper to destination, using source as auxiliary
+        tohCal(n-1, help, sour, dest);
+    }
+
+    // avoid space at the starting of the string in "move disk....."
+    long long toh(int n, int from, int to, int aux) {
+        tohCal(n, from, aux, to);
+        return pow(2,n)-1;
+    }
